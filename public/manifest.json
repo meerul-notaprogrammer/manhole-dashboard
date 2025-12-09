@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Manhole Dashboard",
+  "name": "H01 Manhole Sensor Dashboard - Real-time Monitoring",
+  "description": "Real-time monitoring and analytics for manhole sensor systems",
   "icons": [
     {
       "src": "favicon.ico",
@@ -10,16 +11,25 @@
     {
       "src": "logo192.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "any maskable"
     },
     {
       "src": "logo512.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "any maskable"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "orientation": "any",
+  "theme_color": "#4f46e5",
+  "background_color": "#111827",
+  "categories": [
+    "utilities",
+    "monitoring",
+    "iot"
+  ],
+  "prefer_related_applications": false
 }
