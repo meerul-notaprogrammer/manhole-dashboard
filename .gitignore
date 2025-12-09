@@ -21,3 +21,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+git init
+git add .
+git commit -m "Initial commit: Manhole sensor dashboard"
