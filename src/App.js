@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ScatterChart, Scatter, BarChart, Bar, PieChart, Pie, Cell, AreaChart, Area, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, ComposedChart } from 'recharts';
+import { XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ScatterChart, Scatter, BarChart, Bar, PieChart, Pie, Cell, AreaChart, Area, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, ComposedChart } from 'recharts';
 import { Activity, Droplet, AlertTriangle, TrendingUp, Clock, Zap } from 'lucide-react';
 
 const ManholeAnalysis = () => {
   const [view, setView] = useState('overview');
   const [animatedCount, setAnimatedCount] = useState(0);
-  
+
   useEffect(() => {
     const timer = setTimeout(() => {
       if (animatedCount < 48) setAnimatedCount(prev => prev + 1);
@@ -207,11 +207,10 @@ const ManholeAnalysis = () => {
             <button
               key={tab}
               onClick={() => setView(tab)}
-              className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 whitespace-nowrap ${
-                view === tab
+              className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 whitespace-nowrap ${view === tab
                   ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg shadow-cyan-500/50 scale-105'
                   : 'bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700'
-              }`}
+                }`}
             >
               {tab.charAt(0).toUpperCase() + tab.slice(1)}
             </button>
@@ -235,7 +234,7 @@ const ManholeAnalysis = () => {
                 label="Alarm Triggers"
                 value={alarmCount}
                 color="from-orange-500 to-red-600"
-                trend={`${((alarmCount/totalEvents)*100).toFixed(0)}% of total`}
+                trend={`${((alarmCount / totalEvents) * 100).toFixed(0)}% of total`}
               />
               <StatCard
                 icon={Clock}
@@ -265,18 +264,18 @@ const ManholeAnalysis = () => {
                   <ComposedChart data={timelineData} margin={{ top: 20, right: 30, left: 0, bottom: 60 }}>
                     <defs>
                       <linearGradient id="coverGradient" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.8}/>
-                        <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0.2}/>
+                        <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.8} />
+                        <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0.2} />
                       </linearGradient>
                     </defs>
                     <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                    <XAxis 
-                      dataKey="index" 
+                    <XAxis
+                      dataKey="index"
                       stroke="#9ca3af"
                       tick={{ fontSize: 11 }}
                       label={{ value: 'Event Sequence', position: 'bottom', offset: 40, fill: '#9ca3af' }}
                     />
-                    <YAxis 
+                    <YAxis
                       yAxisId="left"
                       domain={[0, 3]}
                       ticks={[1, 2]}
@@ -284,7 +283,7 @@ const ManholeAnalysis = () => {
                       stroke="#9ca3af"
                       tick={{ fontSize: 11 }}
                     />
-                    <YAxis 
+                    <YAxis
                       yAxisId="right"
                       orientation="right"
                       stroke="#9ca3af"
@@ -292,7 +291,7 @@ const ManholeAnalysis = () => {
                     />
                     <Tooltip content={<CustomTooltip type="event" />} />
                     <Legend wrapperStyle={{ paddingTop: '20px' }} />
-                    
+
                     <Area
                       yAxisId="left"
                       type="stepAfter"
@@ -302,19 +301,19 @@ const ManholeAnalysis = () => {
                       strokeWidth={2}
                       name="Cover State"
                     />
-                    
-                    <Scatter 
+
+                    <Scatter
                       yAxisId="left"
-                      name="Periodic" 
-                      data={timelineData.filter((d, i) => events[i].uploadType === 'periodic')} 
+                      name="Periodic"
+                      data={timelineData.filter((d, i) => events[i].uploadType === 'periodic')}
                       fill="#10b981"
                       dataKey="uploadMarker"
                       shape="circle"
                     />
-                    <Scatter 
+                    <Scatter
                       yAxisId="left"
-                      name="Alarm" 
-                      data={timelineData.filter((d, i) => events[i].uploadType === 'immediate')} 
+                      name="Alarm"
+                      data={timelineData.filter((d, i) => events[i].uploadType === 'immediate')}
                       fill="#f59e0b"
                       dataKey="uploadMarker"
                       shape="diamond"
@@ -333,17 +332,17 @@ const ManholeAnalysis = () => {
                   <BarChart data={timeBlocks} margin={{ top: 20, right: 30, left: 0, bottom: 60 }}>
                     <defs>
                       <linearGradient id="barGradient1" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#06b6d4" stopOpacity={0.9}/>
-                        <stop offset="95%" stopColor="#06b6d4" stopOpacity={0.4}/>
+                        <stop offset="5%" stopColor="#06b6d4" stopOpacity={0.9} />
+                        <stop offset="95%" stopColor="#06b6d4" stopOpacity={0.4} />
                       </linearGradient>
                       <linearGradient id="barGradient2" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.9}/>
-                        <stop offset="95%" stopColor="#f59e0b" stopOpacity={0.4}/>
+                        <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.9} />
+                        <stop offset="95%" stopColor="#f59e0b" stopOpacity={0.4} />
                       </linearGradient>
                     </defs>
                     <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                    <XAxis 
-                      dataKey="period" 
+                    <XAxis
+                      dataKey="period"
                       stroke="#9ca3af"
                       angle={-45}
                       textAnchor="end"
@@ -462,14 +461,14 @@ const ManholeAnalysis = () => {
                     </linearGradient>
                   </defs>
                   <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                  <XAxis 
-                    dataKey="index" 
+                  <XAxis
+                    dataKey="index"
                     type="number"
                     stroke="#9ca3af"
                     label={{ value: 'Event Sequence', position: 'bottom', offset: 10, fill: '#9ca3af' }}
                     tick={{ fontSize: 10 }}
                   />
-                  <YAxis 
+                  <YAxis
                     domain={[0, 3]}
                     ticks={[1, 2]}
                     tickFormatter={(value) => value === 2 ? 'OPEN' : 'CLOSE'}
@@ -478,25 +477,25 @@ const ManholeAnalysis = () => {
                   />
                   <Tooltip content={<CustomTooltip type="event" />} />
                   <Legend />
-                  
-                  <Scatter 
-                    name="Cover State" 
+
+                  <Scatter
+                    name="Cover State"
                     data={timelineData}
                     fill="url(#lineGradient)"
                     line={{ stroke: 'url(#lineGradient)', strokeWidth: 3 }}
                     dataKey="coverState"
                   />
-                  
-                  <Scatter 
-                    name="Periodic Upload" 
-                    data={timelineData.filter((d, i) => events[i].uploadType === 'periodic')} 
+
+                  <Scatter
+                    name="Periodic Upload"
+                    data={timelineData.filter((d, i) => events[i].uploadType === 'periodic')}
                     fill="#10b981"
                     dataKey="uploadMarker"
                     shape="circle"
                   />
-                  <Scatter 
-                    name="Immediate Upload" 
-                    data={timelineData.filter((d, i) => events[i].uploadType === 'immediate')} 
+                  <Scatter
+                    name="Immediate Upload"
+                    data={timelineData.filter((d, i) => events[i].uploadType === 'immediate')}
                     fill="#f59e0b"
                     dataKey="uploadMarker"
                     shape="star"
@@ -510,18 +509,16 @@ const ManholeAnalysis = () => {
               <h2 className="text-2xl font-bold text-white mb-4">Event Log</h2>
               <div className="max-h-96 overflow-y-auto space-y-2">
                 {events.slice().reverse().map((event, idx) => (
-                  <div key={idx} className={`p-3 rounded-lg border-l-4 ${
-                    event.uploadType === 'immediate' 
-                      ? 'bg-orange-900 bg-opacity-20 border-orange-500' 
+                  <div key={idx} className={`p-3 rounded-lg border-l-4 ${event.uploadType === 'immediate'
+                      ? 'bg-orange-900 bg-opacity-20 border-orange-500'
                       : 'bg-emerald-900 bg-opacity-20 border-emerald-500'
-                  }`}>
+                    }`}>
                     <div className="flex justify-between items-start">
                       <div className="flex-1">
                         <div className="flex items-center gap-2">
                           <span className="text-white font-mono text-sm">{event.time}</span>
-                          <span className={`px-2 py-1 rounded text-xs font-bold ${
-                            event.cover === 'OPEN' ? 'bg-pink-600 text-white' : 'bg-indigo-600 text-white'
-                          }`}>
+                          <span className={`px-2 py-1 rounded text-xs font-bold ${event.cover === 'OPEN' ? 'bg-pink-600 text-white' : 'bg-indigo-600 text-white'
+                            }`}>
                             {event.cover}
                           </span>
                           {event.distance && (
@@ -532,11 +529,10 @@ const ManholeAnalysis = () => {
                           <p className="text-gray-300 text-sm mt-1">⚡ {event.event}</p>
                         )}
                       </div>
-                      <span className={`px-3 py-1 rounded-full text-xs font-bold ${
-                        event.uploadType === 'immediate' 
-                          ? 'bg-orange-500 text-white' 
+                      <span className={`px-3 py-1 rounded-full text-xs font-bold ${event.uploadType === 'immediate'
+                          ? 'bg-orange-500 text-white'
                           : 'bg-emerald-500 text-white'
-                      }`}>
+                        }`}>
                         {event.uploadType}
                       </span>
                     </div>
@@ -559,19 +555,19 @@ const ManholeAnalysis = () => {
                 <AreaChart data={distanceData} margin={{ top: 20, right: 30, left: 0, bottom: 60 }}>
                   <defs>
                     <linearGradient id="distanceGradient" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#06b6d4" stopOpacity={0.8}/>
-                      <stop offset="95%" stopColor="#06b6d4" stopOpacity={0.1}/>
+                      <stop offset="5%" stopColor="#06b6d4" stopOpacity={0.8} />
+                      <stop offset="95%" stopColor="#06b6d4" stopOpacity={0.1} />
                     </linearGradient>
                   </defs>
                   <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                  <XAxis 
-                    dataKey="time" 
+                  <XAxis
+                    dataKey="time"
                     stroke="#9ca3af"
                     tick={{ fontSize: 10, angle: -45, textAnchor: 'end' }}
                     height={80}
                     label={{ value: 'Time', position: 'bottom', offset: 40, fill: '#9ca3af' }}
                   />
-                  <YAxis 
+                  <YAxis
                     domain={[25, 45]}
                     stroke="#9ca3af"
                     tick={{ fontSize: 11 }}
@@ -579,9 +575,9 @@ const ManholeAnalysis = () => {
                   />
                   <Tooltip content={<CustomTooltip type="simple" />} />
                   <Legend />
-                  <Area 
-                    type="monotone" 
-                    dataKey="distance" 
+                  <Area
+                    type="monotone"
+                    dataKey="distance"
                     stroke="#06b6d4"
                     strokeWidth={3}
                     fill="url(#distanceGradient)"
@@ -638,7 +634,7 @@ const ManholeAnalysis = () => {
             <div className="bg-gray-800 rounded-xl shadow-xl p-6 border border-gray-700">
               <h2 className="text-2xl font-bold text-white mb-4">Event Type Breakdown</h2>
               <ResponsiveContainer width="100%" height={400}>
-                <BarChart 
+                <BarChart
                   data={[
                     { type: '6-axis Interrupt', count: events.filter(e => e.event && e.event.includes('6-axis')).length, color: '#ef4444' },
                     { type: 'SendPacket', count: events.filter(e => e.event && e.event.includes('SendPacket')).length, color: '#f59e0b' },
@@ -674,16 +670,16 @@ const ManholeAnalysis = () => {
             <div className="bg-gray-800 rounded-xl shadow-xl p-6 border border-gray-700">
               <h2 className="text-2xl font-bold text-white mb-4">Activity Heatmap (Events per Minute)</h2>
               <div className="grid grid-cols-12 gap-1">
-                {eventHeatmap.slice(0, 48).map((item, idx) => (
+                {eventHeatmap.map((item, idx) => (
                   <div
                     key={idx}
                     className="aspect-square rounded transition-all hover:scale-110"
                     style={{
-                      backgroundColor: item.events === 0 ? '#1f2937' : 
+                      backgroundColor: item.events === 0 ? '#1f2937' :
                         item.events === 1 ? '#065f46' :
-                        item.events === 2 ? '#047857' :
-                        item.events === 3 ? '#10b981' :
-                        item.events >= 4 ? '#34d399' : '#1f2937',
+                          item.events === 2 ? '#047857' :
+                            item.events === 3 ? '#10b981' :
+                              item.events >= 4 ? '#34d399' : '#1f2937',
                     }}
                     title={`${item.time}: ${item.events} events`}
                   />
@@ -693,14 +689,14 @@ const ManholeAnalysis = () => {
                 <span>Less</span>
                 <div className="flex gap-1">
                   {[0, 1, 2, 3, 4].map(i => (
-                    <div 
+                    <div
                       key={i}
                       className="w-4 h-4 rounded"
                       style={{
-                        backgroundColor: i === 0 ? '#1f2937' : 
+                        backgroundColor: i === 0 ? '#1f2937' :
                           i === 1 ? '#065f46' :
-                          i === 2 ? '#047857' :
-                          i === 3 ? '#10b981' : '#34d399'
+                            i === 2 ? '#047857' :
+                              i === 3 ? '#10b981' : '#34d399'
                       }}
                     />
                   ))}
@@ -721,13 +717,13 @@ const ManholeAnalysis = () => {
                 <p className="text-blue-100 text-3xl font-bold mb-2">Immediate</p>
                 <p className="text-blue-200 text-sm">Alarms trigger within 1-2 seconds of cover movement</p>
               </div>
-              
+
               <div className="bg-gradient-to-br from-emerald-600 to-green-700 rounded-xl p-6 shadow-lg border-2 border-emerald-400">
                 <h3 className="text-white font-bold text-lg mb-2">📊 Data Quality</h3>
                 <p className="text-emerald-100 text-3xl font-bold mb-2">96%</p>
                 <p className="text-emerald-200 text-sm">Distance readings captured successfully</p>
               </div>
-              
+
               <div className="bg-gradient-to-br from-orange-600 to-red-700 rounded-xl p-6 shadow-lg border-2 border-orange-400">
                 <h3 className="text-white font-bold text-lg mb-2">⚡ Peak Activity</h3>
                 <p className="text-orange-100 text-3xl font-bold mb-2">16:36-42</p>
@@ -738,13 +734,13 @@ const ManholeAnalysis = () => {
             {/* Comprehensive Analysis */}
             <div className="bg-gray-800 rounded-xl shadow-xl p-6 border border-gray-700">
               <h2 className="text-2xl font-bold text-white mb-6">📈 Comprehensive System Analysis</h2>
-              
+
               <div className="space-y-6">
                 <div className="border-l-4 border-cyan-500 pl-6 py-4 bg-gray-900 bg-opacity-50 rounded-r-lg">
                   <h3 className="text-cyan-400 font-bold text-lg mb-2">🔄 Operating Pattern</h3>
                   <p className="text-gray-300 leading-relaxed">
-                    The H01 sensor demonstrates a sophisticated dual-mode operation. During normal operation, it maintains periodic updates every 30-60 seconds, 
-                    providing consistent water level monitoring. When detecting cover movement through its 6-axis accelerometer, it immediately switches to 
+                    The H01 sensor demonstrates a sophisticated dual-mode operation. During normal operation, it maintains periodic updates every 30-60 seconds,
+                    providing consistent water level monitoring. When detecting cover movement through its 6-axis accelerometer, it immediately switches to
                     alarm mode, triggering instant notifications. This hybrid approach optimizes both battery life and security response.
                   </p>
                 </div>
@@ -752,8 +748,8 @@ const ManholeAnalysis = () => {
                 <div className="border-l-4 border-purple-500 pl-6 py-4 bg-gray-900 bg-opacity-50 rounded-r-lg">
                   <h3 className="text-purple-400 font-bold text-lg mb-2">🎯 Detection Accuracy</h3>
                   <p className="text-gray-300 leading-relaxed">
-                    The sensor successfully detected every cover state change during the 15-minute test period. The 6-axis interrupt system proved highly 
-                    sensitive, capturing even minor tilts and movements. Reed switch state transitions were accurately logged, with proper debouncing 
+                    The sensor successfully detected every cover state change during the 15-minute test period. The 6-axis interrupt system proved highly
+                    sensitive, capturing even minor tilts and movements. Reed switch state transitions were accurately logged, with proper debouncing
                     preventing false triggers. Background orientation readings (BG coordinates) provide additional context for movement validation.
                   </p>
                 </div>
@@ -761,8 +757,8 @@ const ManholeAnalysis = () => {
                 <div className="border-l-4 border-emerald-500 pl-6 py-4 bg-gray-900 bg-opacity-50 rounded-r-lg">
                   <h3 className="text-emerald-400 font-bold text-lg mb-2">💧 Water Level Monitoring</h3>
                   <p className="text-gray-300 leading-relaxed">
-                    Distance measurements ranged from 28cm to 40cm, with the majority clustered around 28-33cm. The 40cm reading occurred during an 
-                    active period and may indicate measurement interference during cover movement. The sensor maintains consistent readings when the 
+                    Distance measurements ranged from 28cm to 40cm, with the majority clustered around 28-33cm. The 40cm reading occurred during an
+                    active period and may indicate measurement interference during cover movement. The sensor maintains consistent readings when the
                     cover is stable, demonstrating reliable ultrasonic distance measurement capabilities.
                   </p>
                 </div>
@@ -770,8 +766,8 @@ const ManholeAnalysis = () => {
                 <div className="border-l-4 border-orange-500 pl-6 py-4 bg-gray-900 bg-opacity-50 rounded-r-lg">
                   <h3 className="text-orange-400 font-bold text-lg mb-2">⚠️ Alert System Performance</h3>
                   <p className="text-gray-300 leading-relaxed">
-                    Of 48 total events, 27 were alarm triggers (56%), indicating active monitoring periods. The system successfully differentiated 
-                    between authorized access patterns and potential security events. Multiple sequential 6-axis interrupts during 16:36-16:42 
+                    Of 48 total events, 27 were alarm triggers (56%), indicating active monitoring periods. The system successfully differentiated
+                    between authorized access patterns and potential security events. Multiple sequential 6-axis interrupts during 16:36-16:42
                     suggest extended cover manipulation, possibly indicating maintenance or inspection activity.
                   </p>
                 </div>
@@ -779,8 +775,8 @@ const ManholeAnalysis = () => {
                 <div className="border-l-4 border-pink-500 pl-6 py-4 bg-gray-900 bg-opacity-50 rounded-r-lg">
                   <h3 className="text-pink-400 font-bold text-lg mb-2">🔋 Power Management</h3>
                   <p className="text-gray-300 leading-relaxed">
-                    The periodic upload strategy with 30-60 second intervals represents an optimized power consumption approach. Immediate uploads 
-                    only during alarm conditions prevents unnecessary transmission overhead. This intelligent duty cycling extends battery life while 
+                    The periodic upload strategy with 30-60 second intervals represents an optimized power consumption approach. Immediate uploads
+                    only during alarm conditions prevents unnecessary transmission overhead. This intelligent duty cycling extends battery life while
                     maintaining rapid security response capabilities. The system demonstrates enterprise-grade IoT design principles.
                   </p>
                 </div>
